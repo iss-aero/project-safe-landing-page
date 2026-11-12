@@ -1,0 +1,12 @@
+# Claude Code and agent tooling
+.claude/
+.superpowers/
+.taste-skill/
+.agents/
+CLAUDE.md
+AGENTS.md
+.mcp.json
+
+# local only
+experiments/
+.DS_Store

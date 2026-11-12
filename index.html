@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en-GB" data-type="software" data-radius="round" data-ground="sand" data-buttons="pill" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAFE: swarm autonomy from ISS Aerospace</title>
+<meta name="description" content="SAFE, Swarm Autonomy Flight Environment, is swarm autonomy software in development at ISS Aerospace. It is designed to allow one operator to supervise several drones and ground robots, and to continue the mission when one vehicle stops. Live trials from 2027.">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/roboto-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<style>
+:root {
+  --p-bg: #ffffff; --p-surface: #fff3ee; --p-ink: #000000; --p-muted: #3b3838;
+  --p-accent: #ff5832; --p-accent-ink: #000000; --p-action: #ff5832; --p-action-ink: #000000;
+  --p-inv-bg: #3b3838; --p-inv-surface: #2e2b2b; --p-inv-ink: #ffffff; --p-inv-muted: #d4d4d4;
+  --p-inv-accent: #ff5832; --p-inv-accent-ink: #000000; --p-inv-action: #ff5832; --p-inv-action-ink: #000000;
+  --font-display: Roboto, system-ui, sans-serif;
+  --font-text: Roboto, system-ui, sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.04em;
+}
+</style>
+<link rel="stylesheet" href="css/page.css">
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+</head>
+<body>
+<!-- type: software (site-kind software)
+     content: marketing/site-content.md (copy deck, 6 Nov 2026) with the coordinator's tone pass
+     deal kept from the earlier build: nav, buttons pill, ground sand, ISS brand palette, Roboto (ISS brand rule)
+     effect: none. moments: word-rotate (hero), word-highlight and counter-rolls (#statement)
+     loop: the worked example (js/worked-example.js), with a pause control
+     overrides, at Pranav's request: sections are as tall as their content (not one screen each), and
+     the page shows no product screen because SAFE has no operator interface yet
+     client slot: the ISS general inbox (safe@iss-aerospace.example until ISS confirms the address) -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="lockup" href="#top" aria-label="SAFE by ISS Aerospace"><span class="lockup__safe" aria-hidden="true">SAFE</span><span class="lockup__by" aria-hidden="true"><span>by</span> ISS Aerospace</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="#example">How a mission runs</a></div>
+      <div class="nav__item"><a class="nav__link" href="#uses">Use cases</a></div>
+      <div class="nav__item"><a class="nav__link" href="#approval">Approval</a></div>
+      <div class="nav__item"><a class="nav__link" href="#trial">Trials</a></div>
+    </nav>
+    <div class="nav__actions">
+      <span class="nav__partners"><img loading="lazy" src="assets/iss-logo-colour.png" alt="ISS Aerospace" width="170" height="32"><img loading="lazy" src="assets/uni-exeter-colour.png" alt="University of Exeter" width="118" height="40"><img loading="lazy" src="assets/ktp-colour.png" alt="Innovate UK Knowledge Transfer Partnerships" width="165" height="32"></span>
+      <a class="btn btn--primary" href="#contact">Request a site trial</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero__wrap">
+      <div class="hero__text">
+        <p class="hero__kicker"><strong>SAFE</strong> Swarm Autonomy Flight Environment</p>
+        <h1 id="hero-h">Covering a large site takes a large team.</h1>
+        <p class="hero__lead">SAFE by ISS Aerospace is software in development, designed to allow one operator to supervise a team of drones and ground robots on patrol, search, survey, inspection and delivery. If one vehicle develops a fault or loses GPS, another will take over its task.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="#contact">Request a site trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#example">See how a mission runs</a></div>
+        <ul class="chips">
+          <li><strong>Operation without GPS.</strong> Vehicles are designed to hold their position from cameras, and lidar where required, near steel, inside structures and when the link is lost.</li>
+          <li><strong>Task transfer on a fault.</strong> A vehicle that develops a fault will return, and a serviceable vehicle will take over its task.</li>
+          <li><strong>Evidence for approval.</strong> SAFE is being developed to produce the safety evidence that supports an operator's approval.</li>
+        </ul>
+        <p class="hero__for"><span class="hero__badge">Live trials from 2027</span> Designed for ports, utilities, councils, emergency services and distribution sites.</p>
+      </div>
+      <div class="hero__art">
+        <video class="hero__video" muted loop playsinline autoplay preload="metadata" poster="assets/video/hero-loop-poster.webp" width="864" height="1080" aria-label="An illustration of SAFE in a port: aircraft and ground robots patrol, an alarm is checked, a sector is handed over and a delivery is made.">
+          <source src="assets/video/hero-loop.av1.mp4" type='video/mp4; codecs="av01.0.08M.10"'>
+          <source src="assets/video/hero-loop.mp4" type="video/mp4">
+        </video>
+        <script>if (matchMedia('(prefers-reduced-motion: reduce)').matches) { const v = document.currentScript.previousElementSibling; v.removeAttribute('autoplay'); v.pause(); }</script>
+        <button type="button" class="mission__btn mission__btn--play hero__pause" aria-label="Pause the video"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M3 2h3v10H3zM8 2h3v10H8z"/><path class="i-play" d="M3 2l9 5-9 5z"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-surface" id="proof" aria-labelledby="proof-h">
+    <div class="wrap">
+      <div class="grid split">
+        <div class="span-7">
+          <h2 id="proof-h">Developed by a team that operates on sensitive sites.</h2>
+          <div class="proof">
+            <article><h3>ISS Aerospace</h3><p>A UK designer and manufacturer of uncrewed systems with a decade of delivery for the Ministry of Defence, Dstl, AWE, the NDA, BAE Systems, Airbus and Babcock. Its systems monitor sensitive nuclear infrastructure autonomously.</p></article>
+            <article><h3>University of Exeter</h3><p>The CRANE laboratory, Cooperative Robotics and Autonomous Networks, carries out the research.</p></article>
+            <article><h3>Innovate UK</h3><p>The UK's national innovation agency funds the programme as a Knowledge Transfer Partnership. The scheme has moved university expertise into UK industry for close to fifty years.</p></article>
+          </div>
+          <div class="logos-row">
+            <img loading="lazy" src="assets/iss-logo-colour.png" alt="ISS Aerospace" width="212" height="40">
+            <img loading="lazy" src="assets/uni-exeter-colour.png" alt="University of Exeter" width="138" height="47">
+            <img loading="lazy" src="assets/ktp-colour.png" alt="Innovate UK Knowledge Transfer Partnerships" width="206" height="40">
+          </div>
+        </div>
+        <div class="span-5 m-zoom frame frame--photo split__photo">
+          <img src="assets/photos/aircraft-closeup-1600.webp" srcset="assets/photos/aircraft-closeup-900.webp 900w, assets/photos/aircraft-closeup-1600.webp 1600w" sizes="(min-width: 1024px) 1200px, 100vw" alt="Close view of an ISS Sensus M4 aircraft in long grass" loading="lazy" decoding="async" width="1600" height="1067" style="object-position: 40% 30%" data-source="client" data-subject="Sensus M4 close up">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pain" aria-labelledby="pain-h">
+    <div class="wrap">
+      <div class="grid split">
+        <div class="span-5 m-zoom frame frame--photo split__photo">
+          <img src="assets/photos/crew-setup-1600.webp" srcset="assets/photos/crew-setup-900.webp 900w, assets/photos/crew-setup-1600.webp 1600w" sizes="(min-width: 1024px) 1200px, 100vw" alt="An ISS engineer sets up an aircraft on grass before a flight" loading="lazy" decoding="async" width="1600" height="1067" data-source="client" data-subject="engineer preparing an ISS aircraft">
+        </div>
+        <div class="span-7">
+          <h2 id="pain-h">Why coverage depends on headcount.</h2>
+          <ul class="ruled">
+            <li><h3>More ground needs more staff</h3><p>Each extra patrol, search or inspection route needs more people on shift.</p></li>
+            <li><h3>One breakdown stops the job</h3><p>The task waits until the team can come back another day.</p></li>
+            <li><h3>Steel and buildings block GPS</h3><p>Drones lose their position near structures and cannot use it inside them.</p></li>
+            <li><h3>Every new operation needs approval</h3><p>Each new type of flight needs its own safety case before it can start.</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-surface" id="example" aria-labelledby="example-h">
+    <div class="wrap">
+      <div class="section-head--row head-row">
+        <div>
+          <p class="t-label">How SAFE is designed to work</p>
+          <h2 id="example-h">One team of vehicles for every task.</h2>
+          <p class="t-lead">SAFE is designed to run patrol, search, tracking and logistics with one team of aircraft and ground robots. When a vehicle develops a fault, another vehicle will take over its task.</p>
+        </div>
+        <a class="btn btn--primary" href="#contact">Request a site trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+      <div class="mission" data-mission>
+        <figure class="mission__plan">
+          <div class="mission__stage">
+            <video class="mission__video" muted loop playsinline preload="metadata" poster="assets/video/mission-poster.webp" width="1920" height="1080" aria-label="An illustration of SAFE in a port: aircraft and ground robots patrol the perimeter, an aircraft searches the water, another tracks a vehicle, an aircraft makes a delivery, an aircraft with a fault returns and its route passes to another aircraft, and a ground robot works inside a store without GPS.">
+              <source media="(max-width: 767px)" src="assets/video/mission-mobile.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'>
+              <source media="(max-width: 767px)" src="assets/video/mission-mobile.mp4" type="video/mp4">
+              <source src="assets/video/mission.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'>
+              <source src="assets/video/mission.mp4" type="video/mp4">
+            </video>
+            <p class="mission__feature" aria-live="polite">Patrol</p>
+            <div class="mission__controls">
+              <button type="button" class="mission__btn mission__btn--play" data-play aria-label="Pause the video"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M3 2h3v10H3zM8 2h3v10H8z"/><path class="i-play" d="M3 2l9 5-9 5z"/></svg></button>
+            </div>
+            <p class="mission__note">This is an illustration of how SAFE is designed to operate.</p>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="outcomes" aria-labelledby="outcomes-h">
+    <div class="wrap">
+      <div class="grid split">
+        <div class="span-4 m-zoom frame frame--photo split__photo">
+          <img src="assets/photos/crew-field-1600.webp" srcset="assets/photos/crew-field-900.webp 900w, assets/photos/crew-field-1600.webp 1600w" sizes="(min-width: 1024px) 34vw, 100vw" alt="An ISS engineer prepares an aircraft on open grass" loading="lazy" decoding="async" width="1600" height="1067" data-source="client" data-subject="engineer with an aircraft in a field" style="object-position: 18% 50%">
+        </div>
+        <div class="span-8">
+          <h2 id="outcomes-h">What SAFE is designed to change on your site.</h2>
+          <p class="t-lead">Your trial will measure coverage, staff hours and return visits on your site against your current method, and you will receive the results for your business case.</p>
+          <div class="cards cards--2">
+            <article class="card"><h3>Greater coverage with the same team</h3><p>One operator will supervise several vehicles, so coverage no longer depends on crew numbers.</p><p class="card__proof">The Civil Aviation Authority allows one pilot to be responsible for several aircraft when the operator shows that the workload is safe. SAFE is designed to record that evidence.</p></article>
+            <article class="card"><h3>Reduced exposure for personnel</h3><p>Routine checks at height, along fences and inside structures will be carried out by vehicles.</p><p class="card__proof">Personnel attend when a person is required.</p></article>
+            <article class="card"><h3>Missions that complete</h3><p>After a fault or a loss of GPS, the task will transfer to another vehicle.</p><p class="card__proof">Fewer return visits will be required.</p></article>
+            <article class="card"><h3>A record of every task</h3><p>Each task will record which vehicle performed it, when, and what it found.</p><p class="card__proof">Available when the board or an auditor requests it.</p></article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="uses" aria-labelledby="uses-h">
+    <div class="wrap">
+      <h2 id="uses-h">Patrol, inspection, survey and search, carried out by one team of vehicles.</h2>
+      <p class="t-lead">Each task is designed to run on the same software. The vehicles, the site model and the mission plan are configured for the customer's site.</p>
+      <div class="grid uses">
+        <article class="span-4 card uses__card">
+          <h3>Security patrol and alarm response</h3>
+          <p>When an alarm is raised, the control room must decide whether to send a guard. SAFE is designed to send the nearest suitable vehicle to the alarm point and show its camera view in your control room. The rest of the team continues the patrol.</p>
+        </article>
+        <article class="span-4 card uses__card">
+          <h3>Inspection of infrastructure</h3>
+          <p>Fences, roofs, plant and pipework are often inspected less frequently than the operator intends, because each inspection requires a crew. SAFE is designed to allow one operator to assign a scheduled inspection route to the team and repeat the route after severe weather. Each route is designed to return a photograph of every inspection point with its time and position, so that changes can be compared from one visit to the next.</p>
+        </article>
+        <article class="span-4 card uses__card">
+          <h3>Survey and mapping</h3>
+          <p>Satellite positioning is unreliable beside steel structures and unavailable inside buildings. SAFE vehicles are designed to navigate with cameras, and lidar where required, and to share a single map, so that one mission can survey both the open site and the interior of its structures.</p>
+        </article>
+        <article class="span-4 card uses__card">
+          <h3>Search, flood and missing person response</h3>
+          <p>A search over open ground, coastline or flooded land is limited by the area a small crew can cover. SAFE is designed to give each vehicle its own sector. If a vehicle withdraws, its sector will pass to another vehicle, so that no ground is left unsearched.</p>
+        </article>
+        <article class="span-4 card uses__card">
+          <h3>Logistics: lift and delivery</h3>
+          <p>Moving parts, samples and equipment across a large site occupies staff and vehicles for short journeys. SAFE is designed to assign a delivery to a free aircraft, which lifts the load, sets it down at the drop point and returns to its patrol.</p>
+        </article>
+        <article class="span-4 card uses__card uses__card--dark ground-inverse">
+          <h3>Where it works</h3>
+          <p>Ports and harbours, energy and utilities, defence and nuclear sites, transport, emergency services and large estates.</p>
+          <p class="uses__makers"><strong>Vehicle makers</strong> will be able to add team operation and safety evidence to their own aircraft and ground robots under licence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="approval" aria-labelledby="approval-h">
+    <div class="wrap">
+      <div class="grid split">
+        <div class="span-5 m-zoom frame frame--photo split__photo">
+          <img src="assets/photos/aircraft-covered-1600.webp" srcset="assets/photos/aircraft-covered-900.webp 900w, assets/photos/aircraft-covered-1600.webp 1600w" sizes="(min-width: 1024px) 1200px, 100vw" alt="An ISS aircraft standing under a covered walkway beside a building" loading="lazy" decoding="async" width="1600" height="1067" data-source="client" data-subject="ISS aircraft beside a structure">
+        </div>
+        <div class="span-7">
+          <h2 id="approval-h">Approval to operate, supported by safety evidence.</h2>
+          <p class="t-lead">Approval is a common cause of delay in drone programmes. SAFE is being developed to produce the safety evidence that supports an operator's approval.</p>
+          <ul class="ruled ruled--2">
+            <li><h3>Designed for the UK route</h3><p>SAFE is designed around UK SORA, the Civil Aviation Authority's route for flights beyond visual line of sight (BVLOS) since April 2025.</p></li>
+            <li><h3>One operator, many vehicles</h3><p>The Civil Aviation Authority allows one pilot to be responsible for several aircraft when the operator shows that the workload is safe. SAFE is designed to record that evidence.</p></li>
+            <li><h3>Fault responses agreed with you</h3><p>Before any flight, you will agree with ISS what each vehicle does if it develops a fault.</p></li>
+            <li><h3>Tested in a model of your site first</h3><p>Every behaviour will be tested in a simulated copy of the site before a vehicle operates there.</p></li>
+            <li><h3>Weather limits agreed first</h3><p>Rain and wind limits will be set for each trial site and agreed with your team before the first flight.</p></li>
+            <li><h3>Trial approvals managed with you</h3><p>For the trial, ISS will prepare the flight approvals and safety documentation with your team.</p></li>
+          </ul>
+          <p class="t-small muted">Each operator remains responsible for its own approval. SAFE is designed to support the application.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="statement" aria-label="SAFE in one line" data-moment="word-highlight">
+    <div class="wrap">
+      <p class="mo-wh__text statement">When one vehicle stops, <strong>the mission is designed to continue.</strong></p>
+      <div class="grid figures">
+        <div class="span-4"><p class="t-stat" data-moment="counter-rolls">3</p><p>types of vehicle on one task list</p></div>
+        <div class="span-4"><p class="t-stat" data-moment="counter-rolls">1</p><p>operator supervising the fleet</p></div>
+        <div class="span-4"><p class="t-stat">2027</p><p>live trials begin on UK sites</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-inverse" id="trial" aria-labelledby="trial-h">
+    <div class="wrap">
+      <div class="grid split">
+        <div class="span-7">
+          <h2 id="trial-h">2027 trial places for a small number of UK sites.</h2>
+          <p class="t-lead">Trials are open to any suitable site with a defined task. Sites selected at this stage will help to choose the first tasks SAFE is developed to perform.</p>
+          <ul class="ruled ruled--2">
+            <li><h3>A trial built around your site</h3><p>One task on your site is selected with your team, and the trial is designed around it.</p></li>
+            <li><h3>A digital model of your site</h3><p>Your site is modelled before any vehicle arrives, and you receive the results of every test in the model.</p></li>
+            <li><h3>First access to SAFE</h3><p>Trial sites will receive first access when the programme ends in July 2028.</p></li>
+            <li><h3>No cost to take part</h3><p>Participation in the trial is free of charge.</p></li>
+          </ul>
+          <ol class="timeline">
+            <li><span class="t-label">Now</span><p>Use cases selected with operators</p></li>
+            <li><span class="t-label">2027</span><p>Model of your site and tests in it</p></li>
+            <li><span class="t-label">2027 to 2028</span><p>Trials, first with one vehicle, then with the team</p></li>
+            <li><span class="t-label">July 2028</span><p>Programme ends, and trial sites receive first access</p></li>
+          </ol>
+        </div>
+        <div class="span-5 m-zoom frame frame--photo split__photo">
+          <img src="assets/photos/aircraft-drive-1600.webp" srcset="assets/photos/aircraft-drive-900.webp 900w, assets/photos/aircraft-drive-1600.webp 1600w" sizes="(min-width: 1024px) 1200px, 100vw" alt="An ISS aircraft on a gravel drive between trees" loading="lazy" decoding="async" width="1600" height="1067" style="object-position: 50% 62%" data-source="client" data-subject="ISS aircraft on a drive">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="grid split">
+        <div class="span-5 contact__intro">
+          <h2 id="contact-h">Register your interest.</h2>
+          <p class="t-lead">Describe your site and the first task you would assign to SAFE. We will arrange an introductory meeting to understand your site and its requirements.</p>
+          <ul class="ruled">
+            <li><h3>Request a site trial</h3><p>For any site with a defined task.</p></li>
+            <li><h3>Join the stakeholder workshop</h3><p>For operators, site leads and prospective customers. Contribute to the selection of the first applications.</p></li>
+            <li><h3>Receive project updates</h3><p>A video of the site model and a quarterly update.</p></li>
+          </ul>
+          <p class="t-small muted">ISS Aerospace has delivered uncrewed systems for the Ministry of Defence, Dstl, AWE and the NDA for a decade.</p>
+          <p class="contact__mail"><a class="link" href="mailto:safe@iss-aerospace.example">Contact the SAFE team by email</a></p>
+        </div>
+        <form class="span-7 card contact__form" action="mailto:safe@iss-aerospace.example" method="post" enctype="text/plain">
+          <div class="form-row">
+            <label>Name<input class="m-input" name="name" autocomplete="name" required></label>
+            <label>Email<input class="m-input" type="email" name="email" autocomplete="email" required></label>
+          </div>
+          <div class="form-row">
+            <label>Organisation<input class="m-input" name="organisation" autocomplete="organization" required></label>
+            <label>Role<input class="m-input" name="role" autocomplete="organization-title"></label>
+          </div>
+          <fieldset>
+            <legend>Area of interest</legend>
+            <label class="choice"><input type="radio" name="step" value="trial site" checked> Trial site</label>
+            <label class="choice"><input type="radio" name="step" value="workshop"> Stakeholder workshop</label>
+            <label class="choice"><input type="radio" name="step" value="updates"> Project updates</label>
+          </fieldset>
+          <label>Site and task<textarea class="m-input" name="task" rows="3"></textarea></label>
+          <button class="btn btn--primary" type="submit">Submit<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer footer--dark ground-inverse site-footer">
+  <div class="wrap">
+    <div class="grid">
+      <div class="span-5 stack-4">
+        <a class="lockup lockup--light" href="#top" aria-label="SAFE by ISS Aerospace"><span class="lockup__safe" aria-hidden="true">SAFE</span><span class="lockup__by" aria-hidden="true"><span>by</span> ISS Aerospace</span></a>
+        <p>SAFE is developed by ISS Group Ltd, trading as ISS Aerospace, with the University of Exeter. Funded through an Innovate UK Knowledge Transfer Partnership. SAFE is in development. Live trials begin in 2027.</p>
+      </div>
+      <nav class="span-3 start-8 footer__col" aria-label="Page"><ul><li><a href="#example">How a mission runs</a></li><li><a href="#uses">Use cases</a></li><li><a href="#approval">Approval</a></li><li><a href="#trial">Trials</a></li></ul></nav>
+      <nav class="span-2 footer__col" aria-label="Company"><ul><li><a href="https://www.issaerospace.com">ISS Aerospace</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    </div>
+    <div class="footer__legal">
+      <span>&copy; 2026 ISS Group Ltd, trading as ISS Aerospace</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="vendor/gsap/gsap.min.js"></script>
+<script defer src="vendor/gsap/ScrollTrigger.min.js"></script>
+<script defer src="vendor/gsap/SplitText.min.js"></script>
+<script defer src="vendor/gsap/CustomEase.min.js"></script>
+<script defer src="js/motion.js"></script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="js/mission-video.js"></script>
+<script type="module" src="js/hero-video.js"></script>
+</body>
+</html>
