@@ -59,7 +59,7 @@
 
   function sectionEntrances(isDesktop) {
     const rise = isDesktop ? 24 : 12;
-    document.querySelectorAll('main > section.section:not(#example)').forEach(section => {
+    document.querySelectorAll('main > section.section').forEach(section => {
       const head = section.querySelectorAll(':scope h2, :scope .t-lead');
       const items = section.querySelectorAll('.card, .proof > article, .logos-row, .figures > div, .contact__mail');
       const rules = section.querySelectorAll('.ruled > li');
@@ -88,15 +88,6 @@
     });
   }
 
-  // page-side hook for the 3D mission scene (js/mission-scene.js, not built yet): the scene calls
-  // SAFEMission.register({ play(), pause(), seek(progress) }) and plays only while its section is on screen
-  window.SAFEMission = {
-    register(scene) {
-      const section = document.getElementById('example');
-      if (!section || !scene) return;
-      ScrollTrigger.create({ trigger: section, start: 'top 75%', end: 'bottom 25%', onToggle: self => (self.isActive ? scene.play?.() : scene.pause?.()) });
-    },
-  };
 
   gsap.matchMedia().add({
     isDesktop: '(min-width: 768px) and (prefers-reduced-motion: no-preference)',
