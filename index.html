@@ -35,7 +35,7 @@
      content: marketing/site-content.md (copy deck, 6 Nov 2026) with the coordinator's tone pass
      deal kept from the earlier build: nav, buttons pill, ground sand, ISS brand palette, Roboto (ISS brand rule)
      effect: none. moments: word-rotate (hero), word-highlight and counter-rolls (#statement)
-     loop: the worked example (js/worked-example.js), with a pause control
+     films: the hero film and four use-case films that play in turn (js/use-case-videos.js), each with a pause control
      overrides, at Pranav's request: sections are as tall as their content (not one screen each), and
      the page shows no product screen because SAFE has no operator interface yet
      client slot: the ISS general inbox (safe@iss-aerospace.example until ISS confirms the address) -->
@@ -66,15 +66,10 @@
         <h1 id="hero-h">Covering a large site takes a large team.</h1>
         <p class="hero__lead">SAFE by ISS Aerospace is software in development, designed to allow one operator to supervise a team of drones and ground robots on patrol, search, survey, inspection and delivery. If one vehicle develops a fault or loses GPS, another will take over its task.</p>
         <div class="btn-row"><a class="btn btn--primary" href="#contact">Request a site trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#uses">See the use cases</a></div>
-        <ul class="chips">
-          <li><strong>Operation without GPS.</strong> Vehicles are designed to hold their position from cameras, and lidar where required, near steel, inside structures and when the link is lost.</li>
-          <li><strong>Task transfer on a fault.</strong> A vehicle that develops a fault will return, and a serviceable vehicle will take over its task.</li>
-          <li><strong>Evidence for approval.</strong> SAFE is being developed to produce the safety evidence that supports an operator's approval.</li>
-        </ul>
         <p class="hero__for"><span class="hero__badge">Live trials from 2027</span> Designed for ports, utilities, councils, emergency services and distribution sites.</p>
       </div>
       <div class="hero__art">
-        <video data-captions='[[0, "Patrol", "An aircraft holds the route."], [3.5, "Battery low", "It cannot finish the patrol."], [5.0, "Relief", "Another aircraft arrives to take over."], [6.5, "Handover", "It leaves only once the route is covered."], [9.0, "Result", "The patrol never stops."]]' class="hero__video" muted loop playsinline autoplay preload="metadata" poster="assets/video/hero-loop-poster.webp" width="864" height="1080" aria-label="An illustration of SAFE in a port: aircraft and ground robots patrol, an alarm is checked, a sector is handed over and a delivery is made.">
+        <video data-captions='[[0, "Routine patrol", "One aircraft covers the quay."], [3, "Fault", "It reports a failure."], [6.5, "Relief", "A standby aircraft launches."], [9.5, "Handover", "It takes over the route."], [13.5, "Result", "The patrol never stops."]]' class="hero__video" muted loop playsinline autoplay preload="metadata" poster="assets/video/hero-loop-poster.webp" width="864" height="1080" aria-label="An illustration of SAFE in a port: aircraft and ground robots patrol, an alarm is checked, a sector is handed over and a delivery is made.">
           <source src="assets/video/hero-loop.mp4" type="video/mp4">
         </video>
         <script>if (matchMedia('(prefers-reduced-motion: reduce)').matches) { const v = document.currentScript.previousElementSibling; v.removeAttribute('autoplay'); v.pause(); }</script>
@@ -83,7 +78,63 @@
     </div>
   </section>
 
-  <section class="section ground-surface" id="proof" aria-labelledby="proof-h">
+  <section class="section ground-surface" id="uses" aria-labelledby="uses-h">
+    <div class="wrap">
+      <div class="section-head--row head-row">
+        <div>
+          <p class="t-label">How SAFE is designed to work</p>
+          <h2 id="uses-h">One team of vehicles for every task.</h2>
+          <p class="t-lead">Each task is designed to run on the same software, with one operator and one team of aircraft and ground robots.</p>
+        </div>
+        <a class="btn btn--primary" href="#contact">Request a site trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+      <div class="cases" data-cases>
+        <article class="case is-active" id="film-respond">
+          <figure class="case__clip">
+            <video data-captions='[[0, "Alarm", "Someone is through the fence."], [5, "Response", "The nearest aircraft gives chase."], [9, "Tracking", "It keeps them in sight."], [12, "Result", "Security knows exactly where to go."]]' data-inset='{"src": "assets/video/cases/respond-inset.mp4", "from": 9, "to": 12, "label": "Tracking"}' muted loop playsinline preload="none" poster="assets/video/cases/respond-poster.webp" width="864" height="1080" aria-label="Illustration: An aircraft leaves its patrol, flies to the port gate and holds over a person standing there."><source src="assets/video/cases/respond.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/respond.mp4" type="video/mp4"></video>
+            <h3><button type="button" class="case__switch" aria-pressed="true">Alarm response</button></h3>
+            <button type="button" class="mission__btn mission__btn--play case__pause" aria-label="Pause the film"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M3 2h3v10H3zM8 2h3v10H8z"/><path class="i-play" d="M3 2l9 5-9 5z"/></svg></button>
+          </figure>
+          <p>SAFE is designed to send the nearest suitable vehicle to the alarm point.</p>
+        </article>
+        <article class="case" id="film-inspect">
+          <figure class="case__clip">
+            <video data-captions='[[0, "Routine inspection", "One operator launches the check."], [5, "Inspection", "The aircraft climbs the crane."], [9.5, "Defect", "A crack in a weld, 40 metres up."], [12, "Result", "Found and recorded, with no one at height."]]' data-inset='{"src": "assets/video/cases/inspect-inset.mp4", "from": 9.5, "to": 13, "label": "Crack detected"}' muted loop playsinline preload="none" poster="assets/video/cases/inspect-poster.webp" width="864" height="1080" aria-label="Illustration: An aircraft circles a crane leg in a rising spiral and stops below the boom."><source src="assets/video/cases/inspect.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/inspect.mp4" type="video/mp4"></video>
+            <h3><button type="button" class="case__switch" aria-pressed="false">Inspection at height</button></h3>
+            <button type="button" class="mission__btn mission__btn--play case__pause" aria-label="Pause the film"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M3 2h3v10H3zM8 2h3v10H8z"/><path class="i-play" d="M3 2l9 5-9 5z"/></svg></button>
+          </figure>
+          <p>SAFE is designed to fly scheduled inspection routes around cranes, roofs and plant.</p>
+        </article>
+        <article class="case" id="film-search">
+          <figure class="case__clip">
+            <video data-captions='[[0, "Missing person", "A walker has not come back."], [3, "Search", "Aircraft above the trees. A robot below."], [11, "Found", "The walker is located."], [13.5, "Result", "The robot leads them out."]]' data-inset='{"src": "assets/video/cases/search-inset.mp4", "from": 11, "to": 14, "label": "Person found"}' muted loop playsinline preload="none" poster="assets/video/cases/search-poster.webp" width="864" height="1080" aria-label="Illustration: An aircraft sweeps its sector of a hillside, finds a person and holds above them."><source src="assets/video/cases/search.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/search.mp4" type="video/mp4"></video>
+            <h3><button type="button" class="case__switch" aria-pressed="false">Search and missing person response</button></h3>
+            <button type="button" class="mission__btn mission__btn--play case__pause" aria-label="Pause the film"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M3 2h3v10H3zM8 2h3v10H8z"/><path class="i-play" d="M3 2l9 5-9 5z"/></svg></button>
+          </figure>
+          <p>Each vehicle is designed to search its own sector of open or wooded ground.</p>
+        </article>
+        <article class="case" id="film-deliver">
+          <figure class="case__clip">
+            <video data-captions='[[0, "Urgent part", "Needed on the other side of the port."], [5, "Delivery", "The aircraft carries it across."], [9, "Handover", "It lands before it lets go."], [12, "Result", "The engineer never leaves the job."]]' muted loop playsinline preload="none" poster="assets/video/cases/deliver-poster.webp" width="864" height="1080" aria-label="Illustration: A ground robot carries a crate along the quay to a landed aircraft and sits beside it."><source src="assets/video/cases/deliver.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/deliver.mp4" type="video/mp4"></video>
+            <h3><button type="button" class="case__switch" aria-pressed="false">Delivery across the site</button></h3>
+            <button type="button" class="mission__btn mission__btn--play case__pause" aria-label="Pause the film"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M3 2h3v10H3zM8 2h3v10H8z"/><path class="i-play" d="M3 2l9 5-9 5z"/></svg></button>
+          </figure>
+          <p>Vehicles are designed to move parts, samples and equipment across the site.</p>
+        </article>
+      </div>
+      <ul class="chips">
+        <li><strong>Operation without GPS.</strong> Vehicles are designed to hold their position from cameras, and lidar where required, near steel, inside structures and when the link is lost.</li>
+        <li><strong>Task transfer on a fault.</strong> A vehicle that develops a fault will return, and a serviceable vehicle will take over its task.</li>
+        <li><strong>Evidence for approval.</strong> SAFE is being developed to produce the safety evidence that supports an operator's approval.</li>
+      </ul>
+      <div class="cases__foot">
+        <p><strong>Where SAFE is designed to work:</strong> ports and harbours, energy and utilities, defence and nuclear sites, transport, emergency services and large estates. Vehicle makers will be able to add team operation and safety evidence to their own aircraft and ground robots under licence.</p>
+        <p class="cases__note">The clips are illustrations of how SAFE is designed to operate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proof" aria-labelledby="proof-h">
     <div class="wrap">
       <div class="grid split">
         <div class="span-7">
@@ -106,14 +157,16 @@
     </div>
   </section>
 
-  <section class="section" id="pain" aria-labelledby="pain-h">
+  <section class="section ground-surface" id="change" aria-labelledby="change-h">
     <div class="wrap">
-      <div class="grid split">
-        <div class="span-5 m-zoom frame frame--photo split__photo">
-          <img src="assets/photos/crew-setup-1600.webp" srcset="assets/photos/crew-setup-900.webp 900w, assets/photos/crew-setup-1600.webp 1600w" sizes="(min-width: 1024px) 1200px, 100vw" alt="An ISS engineer sets up an aircraft on grass before a flight" loading="lazy" decoding="async" width="1600" height="1067" data-source="client" data-subject="engineer preparing an ISS aircraft">
-        </div>
-        <div class="span-7">
-          <h2 id="pain-h">Why coverage depends on headcount.</h2>
+      <h2 id="change-h">What covering a site costs today, and what SAFE is designed to change.</h2>
+      <p class="t-lead">Your trial will measure coverage, staff hours and return visits on your site against your current method, and you will receive the results for your business case.</p>
+      <div class="change">
+        <div class="change__col">
+          <p class="t-label">Today</p>
+          <div class="m-zoom frame--photo change__photo">
+            <img src="assets/photos/crew-setup-1600.webp" srcset="assets/photos/crew-setup-900.webp 900w, assets/photos/crew-setup-1600.webp 1600w" sizes="(min-width: 768px) 50vw, 100vw" alt="An ISS engineer sets up an aircraft on grass before a flight" loading="lazy" decoding="async" width="1600" height="1067" data-source="client" data-subject="engineer preparing an ISS aircraft">
+          </div>
           <ul class="ruled">
             <li><h3>More ground needs more staff</h3><p>Each extra patrol, search or inspection route needs more people on shift.</p></li>
             <li><h3>One breakdown stops the job</h3><p>The task waits until the team can come back another day.</p></li>
@@ -121,60 +174,17 @@
             <li><h3>Every new operation needs approval</h3><p>Each new type of flight needs its own safety case before it can start.</p></li>
           </ul>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section ground-surface" id="uses" aria-labelledby="uses-h">
-    <div class="wrap">
-      <div class="section-head--row head-row">
-        <div>
-          <p class="t-label">How SAFE is designed to work</p>
-          <h2 id="uses-h">One team of vehicles for every task.</h2>
-          <p class="t-lead">Each task is designed to run on the same software, with one operator and one team of aircraft and ground robots. When a vehicle develops a fault, another vehicle will take over its task.</p>
-        </div>
-        <a class="btn btn--primary" href="#contact">Request a site trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
-      </div>
-      <div class="cases" data-cases>
-        <article class="card case">
-          <figure class="case__clip"><video data-captions='[[0, "Alarm", "Someone is through the fence."], [5, "Response", "The nearest aircraft gives chase."], [9, "Tracking", "It keeps them in sight."], [12, "Result", "Security knows exactly where to go."]]' data-inset='{"src": "assets/video/cases/respond-inset.mp4", "from": 9, "to": 12, "label": "Tracking"}' muted loop playsinline preload="none" poster="assets/video/cases/respond-poster.webp" width="864" height="1080" aria-label="Illustration: An aircraft leaves its patrol, flies to the port gate and holds over a person standing there."><source src="assets/video/cases/respond.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/respond.mp4" type="video/mp4"></video></figure>
-          <div class="case__body"><h3>Alarm response</h3><p>When an alarm is raised, SAFE is designed to send the nearest suitable vehicle to the alarm point and show its camera view in your control room. The rest of the team continues the patrol.</p></div>
-        </article>
-        <article class="card case">
-          <figure class="case__clip"><video data-captions='[[0, "Routine inspection", "One operator launches the check."], [5, "Inspection", "The aircraft climbs the crane."], [9.5, "Defect", "A crack in a weld, 40 metres up."], [12, "Result", "Found and recorded, with no one at height."]]' data-inset='{"src": "assets/video/cases/inspect-inset.mp4", "from": 9.5, "to": 13, "label": "Crack detected"}' muted loop playsinline preload="none" poster="assets/video/cases/inspect-poster.webp" width="864" height="1080" aria-label="Illustration: An aircraft circles a crane leg in a rising spiral and stops below the boom."><source src="assets/video/cases/inspect.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/inspect.mp4" type="video/mp4"></video></figure>
-          <div class="case__body"><h3>Inspection at height</h3><p>SAFE is designed to fly scheduled inspection routes around cranes, roofs, plant and pipework. Each route is designed to return a photograph of every inspection point with its time and position.</p></div>
-        </article>
-        <article class="card case">
-          <figure class="case__clip"><video data-captions='[[0, "Missing person", "A walker has not come back."], [3, "Search", "Aircraft above the trees. A robot below."], [11, "Found", "The walker is located."], [13.5, "Result", "The robot leads them out."]]' data-inset='{"src": "assets/video/cases/search-inset.mp4", "from": 11, "to": 14, "label": "Person found"}' muted loop playsinline preload="none" poster="assets/video/cases/search-poster.webp" width="864" height="1080" aria-label="Illustration: An aircraft sweeps its sector of a hillside, finds a person and holds above them."><source src="assets/video/cases/search.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/search.mp4" type="video/mp4"></video></figure>
-          <div class="case__body"><h3>Search and missing person response</h3><p>Each vehicle is designed to search its own sector of woodland, moorland, coastline or flooded land. If a vehicle withdraws, its sector will pass to another vehicle.</p></div>
-        </article>
-        <article class="card case">
-          <figure class="case__clip"><video data-captions='[[0, "Urgent part", "Needed on the other side of the port."], [5, "Delivery", "The aircraft carries it across."], [9, "Handover", "It lands before it lets go."], [12, "Result", "The engineer never leaves the job."]]' muted loop playsinline preload="none" poster="assets/video/cases/deliver-poster.webp" width="864" height="1080" aria-label="Illustration: A ground robot carries a crate along the quay to a landed aircraft and sits beside it."><source src="assets/video/cases/deliver.av1.mp4" type='video/mp4; codecs="av01.0.09M.10"'><source src="assets/video/cases/deliver.mp4" type="video/mp4"></video></figure>
-          <div class="case__body"><h3>Delivery across the site</h3><p>Ground robots and aircraft are designed to move parts, samples and equipment between points on the site, so that staff are not taken away from their work for short journeys.</p></div>
-        </article>
-      </div>
-      <div class="cases__foot">
-        <p><strong>Where SAFE is designed to work:</strong> ports and harbours, energy and utilities, defence and nuclear sites, transport, emergency services and large estates. Vehicle makers will be able to add team operation and safety evidence to their own aircraft and ground robots under licence.</p>
-        <p class="cases__note">The clips are illustrations of how SAFE is designed to operate.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="outcomes" aria-labelledby="outcomes-h">
-    <div class="wrap">
-      <div class="grid split">
-        <div class="span-4 m-zoom frame frame--photo split__photo">
-          <img src="assets/photos/crew-field-1600.webp" srcset="assets/photos/crew-field-900.webp 900w, assets/photos/crew-field-1600.webp 1600w" sizes="(min-width: 1024px) 34vw, 100vw" alt="An ISS engineer prepares an aircraft on open grass" loading="lazy" decoding="async" width="1600" height="1067" data-source="client" data-subject="engineer with an aircraft in a field" style="object-position: 18% 50%">
-        </div>
-        <div class="span-8">
-          <h2 id="outcomes-h">What SAFE is designed to change on your site.</h2>
-          <p class="t-lead">Your trial will measure coverage, staff hours and return visits on your site against your current method, and you will receive the results for your business case.</p>
-          <div class="cards cards--2">
-            <article class="card"><h3>Greater coverage with the same team</h3><p>One operator will supervise several vehicles, so coverage no longer depends on crew numbers.</p><p class="card__proof">The Civil Aviation Authority allows one pilot to be responsible for several aircraft when the operator shows that the workload is safe. SAFE is designed to record that evidence.</p></article>
-            <article class="card"><h3>Reduced exposure for personnel</h3><p>Routine checks at height, along fences and inside structures will be carried out by vehicles.</p><p class="card__proof">Personnel attend when a person is required.</p></article>
-            <article class="card"><h3>Missions that complete</h3><p>After a fault or a loss of GPS, the task will transfer to another vehicle.</p><p class="card__proof">Fewer return visits will be required.</p></article>
-            <article class="card"><h3>A record of every task</h3><p>Each task will record which vehicle performed it, when, and what it found.</p><p class="card__proof">Available when the board or an auditor requests it.</p></article>
+        <div class="change__col">
+          <p class="t-label">What SAFE is designed to change</p>
+          <div class="m-zoom frame--photo change__photo">
+            <img src="assets/photos/crew-field-1600.webp" srcset="assets/photos/crew-field-900.webp 900w, assets/photos/crew-field-1600.webp 1600w" sizes="(min-width: 768px) 50vw, 100vw" alt="An ISS engineer prepares an aircraft on open grass" loading="lazy" decoding="async" width="1600" height="1067" data-source="client" data-subject="engineer with an aircraft in a field" style="object-position: 18% 50%">
           </div>
+          <ul class="ruled">
+            <li><h3>Greater coverage with the same team</h3><p>One operator will supervise several vehicles, so coverage no longer depends on crew numbers.</p></li>
+            <li><h3>Missions that complete</h3><p>After a fault or a loss of GPS, the task will transfer to another vehicle. Fewer return visits will be required.</p></li>
+            <li><h3>Reduced exposure for personnel</h3><p>Routine checks at height, along fences and inside structures will be carried out by vehicles. Personnel attend when a person is required.</p></li>
+            <li><h3>A record of every task</h3><p>Each task will record which vehicle performed it, when, and what it found. Available when the board or an auditor requests it.</p></li>
+          </ul>
         </div>
       </div>
     </div>

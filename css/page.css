@@ -47,21 +47,18 @@ main .t-lead { margin: 0 0 var(--s-6); max-width: 62ch; }
   .nav.is-open .nav__partners img:nth-child(3) { height: 24px; }
 }
 
-/* hero: words on the left, the Sensus M4 photograph on the right with the still cut-out over its edge */
-main > section.hero { height: auto; min-height: min(100svh, 880px); padding: calc(var(--nav) + 40px) 0 48px; display: flex; }
-main > section.hero > .wrap.hero__wrap { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; align-items: stretch; height: auto; }
+/* hero: words on the left, the 4:5 hero film on the right, sized to fill the first screen */
+main > section.hero { height: auto; min-height: min(100svh, 900px); padding: calc(var(--nav) + 24px) 0 32px; display: flex; }
+main > section.hero > .wrap.hero__wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: center; height: auto; }
 .hero__kicker { margin: 0 0 var(--s-4); font-size: 18px; color: var(--iss-dark); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
 .hero__kicker strong { color: #000; font-weight: 800; letter-spacing: -0.02em; font-size: 22px; }
 .hero__kicker span { color: #6b6868; font-size: 15px; }
-.hero h1 { margin: 0 0 var(--s-5); font-size: clamp(40px, 4.6vw, 76px); line-height: 1.04; letter-spacing: -0.035em; }
+.hero h1 { margin: 0 0 var(--s-5); font-size: clamp(40px, 4.6vw, 76px); line-height: 1.04; letter-spacing: -0.035em; text-wrap: balance; }
 .hero__word { color: var(--iss-orange); }
 .hero .hero__lead { margin: 0 0 var(--s-6); font-size: 20px; line-height: 1.5; max-width: 56ch; }
-.chips { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
-.chips li { padding: var(--s-4); border-radius: var(--r-md, 14px); background: var(--p-surface); font-size: 15px; line-height: 1.45; }
-.chips strong { display: block; margin-bottom: 4px; font-size: 16px; font-weight: 600; }
-.hero__for { margin: var(--s-5) 0 0; font-size: 16px; color: var(--iss-dark); display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+.hero__for { margin: var(--s-6) 0 0; font-size: 16px; color: var(--iss-dark); display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
 .hero__badge { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; background: var(--iss-dark); color: #fff; font-weight: 500; font-size: 14px; }
-.hero__art { position: relative; min-height: 420px; }
+.hero__art { position: relative; aspect-ratio: 4 / 5; width: clamp(320px, min(46vw, (100svh - var(--nav) - 56px) * .8), 656px); }
 .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-lg); background: #f3ebe4; }
 .hero__pause { position: absolute; right: 14px; bottom: 14px; }
 /* round play and pause button, shared by the hero (the class name is kept from the old mission film) */
@@ -77,9 +74,8 @@ main > section.hero > .wrap.hero__wrap { display: grid; grid-template-columns: 7
 .is-paused .mission__btn--play .i-play { display: inline; }
 @media (max-width: 1023px) {
   main > section.hero > .wrap.hero__wrap { grid-template-columns: 1fr; }
-  .hero__art { min-height: 360px; margin-top: 48px; }
+  .hero__art { width: 100%; max-height: 80svh; margin-top: 8px; }
 }
-@media (max-width: 767px) { .chips { grid-template-columns: 1fr; } }
 
 
 /* splits: words beside a photograph that runs the full height of the row */
@@ -88,14 +84,25 @@ main > section.hero > .wrap.hero__wrap { display: grid; grid-template-columns: 7
 .split__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .frame--photo { position: relative; overflow: hidden; border-radius: var(--r-lg); }
 
-/* cards in a two-column block */
-.cards { display: grid; gap: var(--s-3); }
-.cards--2 { grid-template-columns: 1fr 1fr; }
-.cards .card { padding: 24px; gap: 8px; }
-.cards .card h3 { margin: 0; font-size: 19px; }
-.cards .card p { margin: 0; font-size: 16px; line-height: 1.5; }
-.card__proof { color: var(--iss-dark); padding-top: 8px; border-top: 1px solid var(--line); margin-top: auto !important; }
-@media (max-width: 767px) { .cards--2 { grid-template-columns: 1fr; } }
+/* three-up: the three design principles under the films */
+.chips { list-style: none; margin: var(--s-6) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+.chips li { padding: var(--s-5); border-radius: var(--r-md, 14px); background: #fff; font-size: 16px; line-height: 1.5; }
+.chips strong { display: block; margin-bottom: 6px; font-size: 18px; font-weight: 600; }
+@media (max-width: 767px) { .chips { grid-template-columns: 1fr; } }
+
+/* cost and change: two columns whose rows line up, today on the left and the design aim on the right */
+#change h2 { max-width: 30ch; }
+.change { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto repeat(4, auto); column-gap: var(--s-7); }
+.change__col { display: grid; grid-row: span 6; grid-template-rows: subgrid; border-top: 2px solid var(--iss-dark); }
+.change__col + .change__col { border-top-color: var(--iss-orange); }
+.change__col .t-label { margin: 0; padding: 14px 0 var(--s-4); }
+.change__photo { aspect-ratio: 2 / 1; margin-bottom: var(--s-3); }
+.change__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.change__col .ruled { grid-row: span 4; grid-template-rows: subgrid; margin: 0; }
+@media (max-width: 767px) {
+  .change { grid-template-columns: 1fr; }
+  .change__col + .change__col { margin-top: var(--s-6); }
+}
 
 
 .head-row { margin-bottom: var(--s-6); align-items: end; }
@@ -168,30 +175,60 @@ main > section.hero > .wrap.hero__wrap { display: grid; grid-template-columns: 7
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 main > section { scroll-margin-top: calc(var(--nav) + 24px); }
 /* hidden start states exist only once motion.js has run, so the page reads in full without script */
-html.motion-ready .hero :is(h1, .hero__kicker, .hero__lead, .btn-row, .chips > li, .hero__for) { opacity: 0; }
+html.motion-ready .hero :is(h1, .hero__kicker, .hero__lead, .btn-row, .hero__for) { opacity: 0; }
 html.motion-ready :is(.ruled > li, .timeline > li) { position: relative; }
 html.motion-ready .ruled > li, html.motion-ready #trial .ruled > li { border-top-color: transparent; }
 html.motion-ready .ruled > li::before { content: ""; position: absolute; inset: 0 0 auto; border-top: 1px solid var(--line); transform-origin: left; transform: scaleX(var(--draw, 1)); }
 html.motion-ready #trial .ruled > li::before { border-top-color: rgb(255 255 255 / .2); }
 html.motion-ready .timeline li::after { transform-origin: left; transform: scaleX(var(--draw, 1)); }
 
-/* use cases: four columns, each a short looping clip (js/use-case-videos.js) above its heading and copy */
-.cases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-.case { padding: 0; overflow: hidden; gap: 0; }
-.case__clip { position: relative; margin: 0; aspect-ratio: 4 / 5; background: #f3ebe4; }
-.case__clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.case__body { display: grid; gap: 8px; padding: 20px 22px 24px; border-top: 4px solid var(--iss-orange); }
-.case__body h3 { margin: 0; font-size: 20px; }
-.case__body p { margin: 0; font-size: 16px; line-height: 1.5; }
-.cases__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: var(--s-5); }
-.cases__foot p { margin: 0; max-width: 72ch; }
-.cases__note { font-size: 13px; color: var(--iss-dark); }
-@media (max-width: 1023px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* use-case films: four films with their titles and lines. With script and motion allowed, one opens wide, plays once
+   and hands over to the next (js/use-case-videos.js). Without script or under reduced motion all four stay equal. */
+.cases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.case { display: grid; gap: 12px; align-content: start; min-width: 0; scroll-margin-top: calc(var(--nav) + 24px); }
+.case__clip { position: relative; isolation: isolate; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-lg); background: var(--iss-dark); container-type: inline-size; }
+.case__clip video { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; }
+.case h3 { margin: 0; padding: 16px 18px 56px; background: linear-gradient(to bottom, rgb(0 0 0 / .6), rgb(0 0 0 / 0)); color: #fff; font-size: 18px; line-height: 1.2; text-wrap: balance; }
+.case__switch { all: unset; font: inherit; }
+.case > p { margin: 0; font-size: 16px; line-height: 1.5; }
+.case__pause { position: absolute; right: 14px; bottom: 14px; z-index: 2; display: none; }
+/* the played share of the active film, as a line along its lower edge */
+.case__clip::after { content: ""; position: absolute; inset: auto 0 0; height: 4px; background: var(--iss-orange); transform-origin: left; transform: scaleX(var(--played, 0)); transition: transform .3s linear; opacity: 0; pointer-events: none; }
+.mo-js .case__switch { cursor: pointer; }
+.mo-js .case__switch::after { content: ""; position: absolute; inset: 0; }
+.mo-js .case__clip:has(.case__switch:focus-visible) { outline: 3px solid var(--iss-orange); outline-offset: -3px; }
+.mo-js .case:not(.is-active) :is(.film-caption, .film-inset) { opacity: 0; }
+.mo-js .case.is-active .case__pause { display: grid; }
+.mo-js .case.is-active .case__clip::after { opacity: 1; }
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .mo-js .cases { display: flex; container-type: inline-size; }
+  /* the active film is a true 4:5 of the row height, so it is never cropped, and the other three share the rest */
+  .mo-js .case { --film-height: min(clamp(460px, 70svh, 720px), 56cqi); flex: 1 1 0; grid-template-rows: var(--film-height) auto; transition: flex-grow .6s var(--ease), flex-basis .6s var(--ease); }
+  .mo-js .case.is-active { flex: 0 0 calc(var(--film-height) * .8); }
+  .mo-js .case__clip { aspect-ratio: auto; }
+  .mo-js .case.is-active h3 { padding-right: 52%; }
+  /* every line keeps the width of a narrow column, so no text re-wraps while the columns move */
+  .mo-js .case > p { width: calc((100cqi - 36px - var(--film-height) * .8) / 3); }
+}
+@media (max-width: 1023px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; } }
 @media (max-width: 639px) {
-  .cases { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .cases { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .case { scroll-snap-align: start; }
 }
-
+/* under reduced motion every film carries its own play button and nothing starts unasked */
+@media (prefers-reduced-motion: reduce) {
+  .mo-js .case__pause { display: grid; }
+  .case__clip::after { transition: none; }
+}
+.cases__foot { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: 12px 24px; margin-top: var(--s-6); }
+.cases__foot p { margin: 0; max-width: 72ch; }
+.cases__note { font-size: 13px; color: var(--iss-dark); }
+@media (max-width: 1023px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; } }
+@media (max-width: 639px) {
+  .cases { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .case { scroll-snap-align: start; }
+}
+@media (prefers-reduced-motion: reduce) { .case, .case > p, .case__clip video, .case__clip::after { transition: none !important; } }
 
 /* cinematic story captions and the onboard-camera window, driven by js/video-captions.js */
 .film-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px 18px 18px; background: linear-gradient(to top, rgb(0 0 0 / .62), rgb(0 0 0 / 0)); color: #fff; pointer-events: none; }
@@ -209,3 +246,8 @@ html.motion-ready .timeline li::after { transform-origin: left; transform: scale
 .film-inset video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .film-inset figcaption { padding: 5px 8px; background: var(--iss-orange); color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 @media (prefers-reduced-motion: reduce) { .film-caption.is-in p { animation: none; } .film-inset { transition: none; } }
+/* captions and the camera window scale with the width of a use-case film */
+.case .film-caption { padding: 64px 64px 18px 18px; transition: opacity .3s var(--ease); }
+.case .film-caption__kicker { font-size: clamp(11px, 2.2cqi, 13px); }
+.case .film-caption__line { font-size: clamp(17px, 4.6cqi, 28px); }
+.case .film-inset { top: 14px; right: 14px; width: min(46%, 230px); }

@@ -25,8 +25,15 @@ three.js r186 bundle there was built with esbuild from the three npm package: an
 `THREE.*` names the scene uses plus GLTFLoader, HDRLoader, MeshoptDecoder, EffectComposer, RenderPass,
 UnrealBloomPass, BokehPass, OutputPass and ShaderPass (`esbuild entry.js --bundle --minify --format=esm`).
 
-Sections: hero, pain, worked example (recorded 3D mission), outcomes, who it is for, approval, proof,
+Sections: hero (words beside the hero film), use-case films with the three design principles under them,
+proof, cost and change (what covering a site costs today beside what SAFE is designed to change), approval,
 statement, trial offer, contact.
+
+The four use-case films (`js/use-case-videos.js`) run as a sequence with no input: the active film opens to about
+half the row and plays once, then the next one opens. Hover, focus, a click or a `#film-respond`, `#film-inspect`,
+`#film-search` or `#film-deliver` link jumps to a film. Every film keeps its poster, title and one line on show.
+Phones get a swipe strip. Under reduced motion, or without JavaScript, the four films sit as equal posters, and
+under reduced motion each has its own play button.
 
 ## Decisions
 
@@ -47,7 +54,7 @@ Webflow). The plan is `../marketing/motion-plan.md`. These break the taste skill
 purpose, approved by Pranav on 2026-11-09, so its checker's reveal and scroll findings for them are
 expected:
 
-- The hero headline rises line by line on load, with the lead, buttons and outcome cards after it.
+- The hero headline rises line by line on load, with the lead and buttons after it.
 - Each section's heading, lead and cards enter once on scroll. Nothing replays or reverses.
 - Section photographs settle from a slight zoom once, on desktop.
 - The ruled lists and the trial timeline draw on once.

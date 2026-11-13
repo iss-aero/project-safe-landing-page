@@ -36,8 +36,7 @@
       tl.to(hero.querySelector('.hero__kicker'), { opacity: 1, y: 0, startAt: { y: 8 }, duration: 0.45 }, 0)
         .from(split.lines, { yPercent: 110, stagger: 0.09 }, 0.08)
         .to([hero.querySelector('.hero__lead'), hero.querySelector('.btn-row')], { opacity: 1, y: 0, startAt: { y: 12 }, stagger: 0.08 }, 0.45)
-        .to(hero.querySelectorAll('.chips > li'), { opacity: 1, y: 0, startAt: { y: 16 }, stagger: 0.07 }, 0.65)
-        .to(hero.querySelector('.hero__for'), { opacity: 1, duration: 0.45 }, 0.9);
+        .to(hero.querySelector('.hero__for'), { opacity: 1, duration: 0.45 }, 0.75);
       if (isDesktop && photo) tl.add(photoSettle(photo, 1.2), 0.3);
     });
   }
@@ -61,7 +60,7 @@
     const rise = isDesktop ? 24 : 12;
     document.querySelectorAll('main > section.section').forEach(section => {
       const head = section.querySelectorAll(':scope h2, :scope .t-lead');
-      const items = section.querySelectorAll('.card, .proof > article, .logos-row, .figures > div, .contact__mail');
+      const items = section.querySelectorAll('.card, .case, .chips > li, .proof > article, .logos-row, .figures > div, .contact__mail');
       const rules = section.querySelectorAll('.ruled > li');
       const steps = section.querySelectorAll('.timeline > li');
       const photos = isDesktop ? section.querySelectorAll('.frame--photo img') : [];
@@ -96,7 +95,7 @@
     const { isDesktop } = ctx.conditions;
     html.classList.add('motion-ready');
     // if the intro never starts, the hero must not stay hidden
-    const guard = setTimeout(() => gsap.set(hero?.querySelectorAll('h1, .hero__kicker, .hero__lead, .btn-row, .chips > li, .hero__for') || [], { opacity: 1 }), 3000);
+    const guard = setTimeout(() => gsap.set(hero?.querySelectorAll('h1, .hero__kicker, .hero__lead, .btn-row, .hero__for') || [], { opacity: 1 }), 3000);
     heroIntro(isDesktop);
     sectionEntrances(isDesktop);
     fontsReady.then(() => ScrollTrigger.refresh());
