@@ -1,71 +1,45 @@
-// Runs the use-case films as a sequence: the active film plays once while the row is on screen, then the next one opens.
-// Hover, focus, a click, a swipe on phones or a #film-name link jumps to a film, and a film under the mouse repeats until the mouse leaves.
-// Under reduced motion nothing plays or advances until the visitor presses play on a film.
-const row = document.querySelector('[data-cases]');
-const cases = [...row.querySelectorAll('.case')];
-const swipeStrip = matchMedia('(max-width: 639px)');
+// Only one use-case film plays at a time so two films side by side never compete for attention.
+// The active film plays once, then the next film on screen takes over. Hovering a film or pressing its play button makes it the active one.
+// The pause button stops the films until play is pressed again. Under reduced motion nothing plays until the visitor presses play.
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-let rowOnScreen = false;
+const cases = [...document.querySelectorAll('.case')];
+const onScreen = new Set();
+let active = null;
 let userPaused = reducedMotion;
-let caseUnderMouse = null;
 
-function syncPlayback() {
+const filmOf = (item) => item.querySelector('video');
+
+const syncPlayback = () => {
+  if (active && !onScreen.has(active)) active = cases.find((item) => onScreen.has(item)) || null;
   cases.forEach((item) => {
-    const film = item.querySelector('video');
-    const playing = item.classList.contains('is-active') && !userPaused;
-    if (playing && rowOnScreen) film.play().catch(() => {}); else film.pause();
-    item.classList.toggle('is-paused', !playing);
-    item.querySelector('.case__pause').setAttribute('aria-label', playing ? 'Pause the film' : 'Play the film');
+    const isActive = item === active;
+    const film = filmOf(item);
+    if (isActive && !userPaused) film.play().catch(() => {}); else film.pause();
+    item.classList.toggle('is-active', isActive);
+    item.classList.toggle('is-paused', !isActive || userPaused);
+    item.querySelector('.case__pause').setAttribute('aria-label', isActive && !userPaused ? 'Pause the film' : 'Play the film');
   });
-}
+};
 
-function activate(item) {
-  if (item.classList.contains('is-active')) return;
-  cases.forEach((other) => {
-    const active = other === item;
-    const film = other.querySelector('video');
-    other.classList.toggle('is-active', active);
-    other.querySelector('.case__switch').setAttribute('aria-pressed', active);
-    if (!active && film.readyState) film.currentTime = 0; // each film starts its story from the first caption
-  });
-  syncPlayback();
-}
+const makeActive = (item) => { active = item; syncPlayback(); };
 
-function playChosen(item) {
-  userPaused = false;
-  activate(item);
-  syncPlayback();
-}
-
-function advanceFrom(item) {
-  if (reducedMotion) { userPaused = true; syncPlayback(); return; }
-  if (item === caseUnderMouse) { item.querySelector('video').play().catch(() => {}); return; }
-  const next = cases[(cases.indexOf(item) + 1) % cases.length];
-  activate(next);
-  if (swipeStrip.matches) row.scrollTo({ left: next.offsetLeft - cases[0].offsetLeft, behavior: 'smooth' });
-}
+const nextOnScreen = (item) => {
+  const visible = cases.filter((other) => onScreen.has(other));
+  return visible[(visible.indexOf(item) + 1) % visible.length] || null;
+};
 
 cases.forEach((item) => {
-  const film = item.querySelector('video');
-  const clip = item.querySelector('.case__clip');
-  const button = item.querySelector('.case__switch');
-  film.loop = false; // the end of a film hands over to the next one
-  film.addEventListener('ended', () => advanceFrom(item));
-  film.addEventListener('timeupdate', () => clip.style.setProperty('--played', film.currentTime / film.duration || 0));
-  button.addEventListener('click', () => (reducedMotion ? playChosen(item) : activate(item)));
+  const film = filmOf(item);
+  film.loop = false;
+  film.addEventListener('ended', () => { film.currentTime = 0; makeActive(nextOnScreen(item)); });
+  item.addEventListener('mouseenter', () => { if (item !== active && !userPaused) makeActive(item); });
   item.querySelector('.case__pause').addEventListener('click', () => {
-    if (item.classList.contains('is-active') && !userPaused) { userPaused = true; syncPlayback(); } else playChosen(item);
+    if (item === active) userPaused = !userPaused; else { userPaused = false; active = item; }
+    syncPlayback();
   });
-  if (reducedMotion) return;
-  button.addEventListener('focus', () => activate(item));
-  item.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') { caseUnderMouse = item; activate(item); } });
-  item.addEventListener('pointerleave', () => { caseUnderMouse = null; });
-  // on the phone swipe strip the film that fills the strip becomes active
-  new IntersectionObserver(([entry]) => { if (swipeStrip.matches && entry.isIntersecting) activate(item); }, { root: row, threshold: 0.75 }).observe(item);
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) onScreen.add(item); else onScreen.delete(item);
+    if (!active && onScreen.size) active = cases.find((other) => onScreen.has(other));
+    syncPlayback();
+  }, { threshold: 0.4 }).observe(item);
 });
-
-new IntersectionObserver(([entry]) => { rowOnScreen = entry.isIntersecting; syncPlayback(); }, { threshold: 0.3 }).observe(row);
-
-const linked = cases.find((item) => `#${item.id}` === location.hash);
-if (linked) activate(linked);
-syncPlayback();

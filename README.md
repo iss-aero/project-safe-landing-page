@@ -29,11 +29,11 @@ Sections: hero (words beside the hero film), use-case films with the three desig
 proof, cost and change (what covering a site costs today beside what SAFE is designed to change), approval,
 statement, trial offer, contact.
 
-The four use-case films (`js/use-case-videos.js`) run as a sequence with no input: the active film opens to about
-half the row and plays once, then the next one opens. Hover, focus, a click or a `#film-respond`, `#film-inspect`,
-`#film-search` or `#film-deliver` link jumps to a film. Every film keeps its poster, title and one line on show.
-Phones get a swipe strip. Under reduced motion, or without JavaScript, the four films sit as equal posters, and
-under reduced motion each has its own play button.
+The four use-case films sit in rows, one per use case, alternating sides, with the use case written over the film
+and the story beside it. On wide screens they sit in a two-by-two grid. Only one film plays at a time so two films
+never compete for attention: the active film plays once, then the next one on screen takes over, and hovering a film
+or pressing its play button makes it the active one (`js/use-case-videos.js`). Under reduced motion nothing plays
+until the visitor presses play. Links to `#film-respond`, `#film-inspect`, `#film-search` and `#film-deliver` go to a row.
 
 ## Decisions
 

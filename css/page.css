@@ -182,53 +182,26 @@ html.motion-ready .ruled > li::before { content: ""; position: absolute; inset: 
 html.motion-ready #trial .ruled > li::before { border-top-color: rgb(255 255 255 / .2); }
 html.motion-ready .timeline li::after { transform-origin: left; transform: scaleX(var(--draw, 1)); }
 
-/* use-case films: four films with their titles and lines. With script and motion allowed, one opens wide, plays once
-   and hands over to the next (js/use-case-videos.js). Without script or under reduced motion all four stay equal. */
-.cases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.case { display: grid; gap: 12px; align-content: start; min-width: 0; scroll-margin-top: calc(var(--nav) + 24px); }
-.case__clip { position: relative; isolation: isolate; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-lg); background: var(--iss-dark); container-type: inline-size; }
+/* use-case rows: each film with its use case written over it and the story beside it, alternating sides (js/use-case-videos.js) */
+.cases { display: grid; gap: clamp(40px, 7vw, 96px); }
+.case { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); gap: clamp(24px, 5vw, 72px); align-items: center; scroll-margin-top: calc(var(--nav) + 24px); }
+.case:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); }
+.case:nth-child(even) .case__clip { order: 2; }
+.case__clip { position: relative; isolation: isolate; margin: 0; aspect-ratio: 4 / 5; max-height: 68svh; overflow: hidden; border-radius: var(--r-lg); background: var(--iss-dark); container-type: inline-size; }
 .case__clip video { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; }
-.case h3 { margin: 0; padding: 16px 18px 56px; background: linear-gradient(to bottom, rgb(0 0 0 / .6), rgb(0 0 0 / 0)); color: #fff; font-size: 18px; line-height: 1.2; text-wrap: balance; }
-.case__switch { all: unset; font: inherit; }
-.case > p { margin: 0; font-size: 16px; line-height: 1.5; }
-.case__pause { position: absolute; right: 14px; bottom: 14px; z-index: 2; display: none; }
-/* the played share of the active film, as a line along its lower edge */
-.case__clip::after { content: ""; position: absolute; inset: auto 0 0; height: 4px; background: var(--iss-orange); transform-origin: left; transform: scaleX(var(--played, 0)); transition: transform .3s linear; opacity: 0; pointer-events: none; }
-.mo-js .case__switch { cursor: pointer; }
-.mo-js .case__switch::after { content: ""; position: absolute; inset: 0; }
-.mo-js .case__clip:has(.case__switch:focus-visible) { outline: 3px solid var(--iss-orange); outline-offset: -3px; }
-.mo-js .case:not(.is-active) :is(.film-caption, .film-inset) { opacity: 0; }
-.mo-js .case.is-active .case__pause { display: grid; }
-.mo-js .case.is-active .case__clip::after { opacity: 1; }
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-  .mo-js .cases { display: flex; container-type: inline-size; }
-  /* the active film is a true 4:5 of the row height, so it is never cropped, and the other three share the rest */
-  .mo-js .case { --film-height: min(clamp(460px, 70svh, 720px), 56cqi); flex: 1 1 0; grid-template-rows: var(--film-height) auto; transition: flex-grow .6s var(--ease), flex-basis .6s var(--ease); }
-  .mo-js .case.is-active { flex: 0 0 calc(var(--film-height) * .8); }
-  .mo-js .case__clip { aspect-ratio: auto; }
-  .mo-js .case.is-active h3 { padding-right: 52%; }
-  /* every line keeps the width of a narrow column, so no text re-wraps while the columns move */
-  .mo-js .case > p { width: calc((100cqi - 36px - var(--film-height) * .8) / 3); }
-}
-@media (max-width: 1023px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; } }
-@media (max-width: 639px) {
-  .cases { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
-  .case { scroll-snap-align: start; }
-}
-/* under reduced motion every film carries its own play button and nothing starts unasked */
-@media (prefers-reduced-motion: reduce) {
-  .mo-js .case__pause { display: grid; }
-  .case__clip::after { transition: none; }
+.case__pause { position: absolute; right: 14px; bottom: 14px; z-index: 2; }
+.case__text { max-width: 64ch; }
+.case h3 { margin: 0 0 var(--s-4, 16px); font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -.01em; text-wrap: balance; }
+.case__text p { margin: 0 0 12px; font-size: 18px; line-height: 1.55; }
+.case__text p:last-child { margin-bottom: 0; }
+@media (max-width: 767px) {
+  .case, .case:nth-child(even) { grid-template-columns: 1fr; gap: 20px; }
+  .case:nth-child(even) .case__clip { order: 0; }
+  .case__text p { font-size: 17px; }
 }
 .cases__foot { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: 12px 24px; margin-top: var(--s-6); }
 .cases__foot p { margin: 0; max-width: 72ch; }
 .cases__note { font-size: 13px; color: var(--iss-dark); }
-@media (max-width: 1023px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; } }
-@media (max-width: 639px) {
-  .cases { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
-  .case { scroll-snap-align: start; }
-}
-@media (prefers-reduced-motion: reduce) { .case, .case > p, .case__clip video, .case__clip::after { transition: none !important; } }
 
 /* cinematic story captions and the onboard-camera window, driven by js/video-captions.js */
 .film-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px 18px 18px; background: linear-gradient(to top, rgb(0 0 0 / .62), rgb(0 0 0 / 0)); color: #fff; pointer-events: none; }
@@ -249,5 +222,20 @@ html.motion-ready .timeline li::after { transform-origin: left; transform: scale
 /* captions and the camera window scale with the width of a use-case film */
 .case .film-caption { padding: 64px 64px 18px 18px; transition: opacity .3s var(--ease); }
 .case .film-caption__kicker { font-size: clamp(11px, 2.2cqi, 13px); }
-.case .film-caption__line { font-size: clamp(17px, 4.6cqi, 28px); }
+.case .film-caption__line { font-size: clamp(24px, 7cqi, 40px); }
 .case .film-inset { top: 14px; right: 14px; width: min(46%, 230px); }
+.film-caption__kicker:empty { display: none; }
+/* wide screens: films in a 2 x 2 grid with the text under each, so no row is mostly empty space */
+@media (min-width: 1024px) {
+  .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px 48px; align-items: start; }
+  .case, .case:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
+  .case:nth-child(even) .case__clip { order: 0; }
+  .case__clip { max-height: none; }
+  .case__text { max-width: none; }
+}
+#uses .head-row h2 { max-width: none; }
+/* the film that is not playing steps back slightly so the eye goes to the one that is */
+.case__clip video { transition: filter .4s var(--ease); }
+.case:not(.is-active) .case__clip video { filter: saturate(.55) brightness(.8); }
+.lockup__logo { height: 24px; width: auto; align-self: center; }
+@media (max-width: 639px) { .lockup__logo { height: 18px; } }
