@@ -206,7 +206,7 @@ html.motion-ready .timeline li::after { transform-origin: left; transform: scale
 .case { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); gap: clamp(24px, 5vw, 72px); align-items: center; scroll-margin-top: calc(var(--nav) + 24px); }
 .case:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); }
 .case:nth-child(even) .case__clip { order: 2; }
-.case__clip { position: relative; isolation: isolate; margin: 0; aspect-ratio: 4 / 5; max-height: 68svh; overflow: hidden; border-radius: var(--r-lg); background: var(--iss-dark); container-type: inline-size; }
+.case__clip { position: relative; isolation: isolate; margin: 0; aspect-ratio: 4 / 5; width: min(100%, (100svh - var(--nav) - 96px) * .8); justify-self: center; overflow: hidden; border-radius: var(--r-lg); background: var(--iss-dark); container-type: inline-size; }
 .case__clip video { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; }
 .case__pause { position: absolute; right: 14px; bottom: 14px; z-index: 2; }
 .case__text { max-width: 64ch; }
@@ -249,7 +249,7 @@ html.motion-ready .timeline li::after { transform-origin: left; transform: scale
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px 48px; align-items: start; }
   .case, .case:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
   .case:nth-child(even) .case__clip { order: 0; }
-  .case__clip { max-height: none; }
+  .case__clip { justify-self: start; }
   .case__text { max-width: none; }
 }
 #uses .head-row h2 { max-width: none; }
