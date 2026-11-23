@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="assets/system.css">
 <link rel="stylesheet" href="assets/motion/motion.css">
 <link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/diagrams/diagram.css">
 <style>
 :root {
   --p-bg: #ffffff; --p-surface: #fff3ee; --p-ink: #000000; --p-muted: #3b3838;
@@ -41,7 +42,7 @@
      client slot: the ISS general inbox (safe@iss-aerospace.example until ISS confirms the address) -->
 <header class="nav">
   <div class="wrap nav__bar">
-    <a class="lockup" href="#top" aria-label="SAFE by ISS Aerospace"><span class="lockup__safe" aria-hidden="true">SAFE</span><img class="lockup__logo" src="assets/iss-logo-colour.png" alt="" width="170" height="32"></a>
+    <a class="lockup" href="#top" aria-label="SAFE by ISS Aerospace"><span class="lockup__safe" aria-hidden="true">SAFE</span><span class="lockup__by" aria-hidden="true">by<img class="lockup__logo" src="assets/iss-logo-colour.png" alt="" width="300" height="57"></span></a>
     <nav class="nav__links" aria-label="Main">
       
       <div class="nav__item"><a class="nav__link" href="#uses">What it does</a></div>
@@ -157,8 +158,13 @@
             <img loading="lazy" src="assets/ktp-colour.png" alt="Innovate UK Knowledge Transfer Partnerships" width="206" height="40">
           </div>
         </div>
-        <div class="span-5 m-zoom frame frame--photo split__photo">
+        <div class="span-5 why__side">
+        <div class="m-zoom frame frame--photo split__photo">
           <img src="assets/photos/aircraft-closeup-1600.webp" srcset="assets/photos/aircraft-closeup-900.webp 900w, assets/photos/aircraft-closeup-1600.webp 1600w" sizes="(min-width: 1024px) 1200px, 100vw" alt="Close view of an ISS Sensus M4 aircraft in long grass" loading="lazy" decoding="async" width="1600" height="1067" style="object-position: 40% 30%" data-source="client" data-subject="Sensus M4 close up">
+        </div>
+        <div class="panel why__diagram">
+          <div class="dg" data-dg-still data-diagram='{"layout": "free", "ground": "dots", "alt": "One operator runs drones and a ground robot. A drone has a fault and another drone takes over its task.", "nodes": [{"id": "op", "label": "Operator", "tone": "ink", "at": [0.14, 0.5], "atCompact": [0.5, 0.12]}, {"id": "a", "label": "Drone", "at": [0.5, 0.17], "atCompact": [0.2, 0.45]}, {"id": "b", "label": "Drone", "meta": "Fault", "at": [0.5, 0.5], "atCompact": [0.5, 0.45]}, {"id": "g", "label": "Ground robot", "at": [0.5, 0.83], "atCompact": [0.8, 0.45]}, {"id": "c", "label": "Drone", "meta": "Handover", "done": true, "at": [0.85, 0.5], "atCompact": [0.5, 0.85]}], "edges": [{"from": "op", "to": "a"}, {"from": "op", "to": "b", "idle": true}, {"from": "op", "to": "g"}, {"from": "b", "to": "c"}], "shots": [[["op>a", "op>g"]], [["b>c"]]]}'></div>
+        </div>
         </div>
       </div>
     </div>
@@ -228,17 +234,17 @@
             <li><h3>First access</h3><p>Trial sites get first access to SAFE when the programme finishes in July 2028.</p></li>
             <li><h3>Free to take part</h3><p>There's no charge for taking part.</p></li>
           </ul>
-          <ol class="timeline">
-            <li><span class="t-label">Now</span><p>Choosing the first jobs with operators</p></li>
-            <li><span class="t-label">2027</span><p>Testing in the digital twin</p></li>
-            <li><span class="t-label">2027 to 2028</span><p>Trials, first with one vehicle, then the full team</p></li>
-            <li><span class="t-label">July 2028</span><p>Programme ends and trial sites get first access</p></li>
-          </ol>
         </div>
         <div class="span-5 m-zoom frame frame--photo split__photo">
           <img src="assets/photos/aircraft-drive-1600.webp" srcset="assets/photos/aircraft-drive-900.webp 900w, assets/photos/aircraft-drive-1600.webp 1600w" sizes="(min-width: 1024px) 1200px, 100vw" alt="An ISS aircraft on a gravel drive between trees" loading="lazy" decoding="async" width="1600" height="1067" style="object-position: 50% 62%" data-source="client" data-subject="ISS aircraft on a drive">
         </div>
       </div>
+      <ol class="timeline">
+        <li><span class="t-label">Now</span><p>Choosing the first jobs with operators</p></li>
+        <li><span class="t-label">2027</span><p>Testing in the digital twin</p></li>
+        <li><span class="t-label">2027 to 2028</span><p>Trials, first with one vehicle, then the full team</p></li>
+        <li><span class="t-label">July 2028</span><p>Programme ends and trial sites get first access</p></li>
+      </ol>
     </div>
   </section>
 
@@ -282,7 +288,7 @@
   <div class="wrap">
     <div class="grid">
       <div class="span-5 stack-4">
-        <a class="lockup lockup--light" href="#top" aria-label="SAFE by ISS Aerospace"><span class="lockup__safe" aria-hidden="true">SAFE</span><img class="lockup__logo" src="assets/iss-logo-white.svg" alt="" width="170" height="32"></a>
+        <a class="lockup lockup--light" href="#top" aria-label="SAFE by ISS Aerospace"><span class="lockup__safe" aria-hidden="true">SAFE</span><span class="lockup__by" aria-hidden="true">by<img class="lockup__logo" loading="lazy" src="assets/iss-logo-white.svg" alt="" width="595" height="272"></span></a>
         <p>SAFE is being developed by ISS Group Ltd, trading as ISS Aerospace, with the University of Exeter, and funded through an Innovate UK Knowledge Transfer Partnership. Site trials start in 2027.</p>
       </div>
       <nav class="span-3 start-8 footer__col" aria-label="Page"><ul><li><a href="#uses">What it does</a></li><li><a href="#approval">Approval</a></li><li><a href="#trial">Trials</a></li></ul></nav>
@@ -302,6 +308,7 @@
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="assets/diagrams/mount.js"></script>
 <script type="module" src="js/use-case-videos.js"></script>
 <script type="module" src="js/video-captions.js"></script>
 <script type="module" src="js/hero-video.js"></script>

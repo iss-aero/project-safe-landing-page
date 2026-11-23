@@ -18,16 +18,21 @@ main .t-lead { margin: 0 0 var(--s-6); max-width: 62ch; }
 
 /* header: the ISS logo beside the product name, the partner logos before the main button */
 @media (min-width: 1024px) { :root { --nav: 96px; } }
-/* the SAFE by ISS Aerospace lockup: the heavy wordmark with its maker set small on the same baseline */
-.lockup { display: inline-flex; align-items: baseline; gap: 7px; flex: none; color: #000; text-decoration: none; line-height: 1; }
-.lockup__safe { font: 800 52px/.8 var(--font-display); letter-spacing: -0.05em; }
-.lockup__by { font: 600 13px/1 var(--font-text); letter-spacing: .05em; color: var(--iss-dark); white-space: nowrap; }
-.lockup__by span { font-weight: 300; color: #6b6868; letter-spacing: .03em; }
+/* the SAFE by ISS Aerospace lockup: the heavy wordmark, its maker on a small line under it */
+.lockup { display: inline-grid; justify-items: start; row-gap: 6px; flex: none; color: #000; text-decoration: none; line-height: 1; }
+.lockup__safe { font: 800 46px/.76 var(--font-display); letter-spacing: -0.05em; }
+.lockup__by { display: inline-flex; align-items: center; gap: 6px; font: 400 12px/1 var(--font-text); letter-spacing: .02em; color: var(--iss-dark); white-space: nowrap; }
+.lockup__logo { height: 17px; width: auto; }
 .lockup--light { color: #fff; }
-.lockup--light .lockup__by { color: #fff; }
-.lockup--light .lockup__by span { color: #d4d4d4; }
-@media (max-width: 1023px) { .lockup__safe { font-size: 40px; } .lockup__by { font-size: 12px; } }
-@media (max-width: 639px) { .lockup { gap: 5px; } .lockup__safe { font-size: 34px; } .lockup__by { font-size: 11px; } }
+.lockup--light .lockup__by { color: #fff; gap: 8px; align-items: flex-end; }
+.lockup--light .lockup__logo { height: 30px; }
+.site-footer .lockup { margin-bottom: var(--s-3); }
+@media (max-width: 1023px) { .lockup { row-gap: 5px; } .lockup__safe { font-size: 36px; } .lockup__logo { height: 13px; } }
+@media (max-width: 639px) { .lockup { row-gap: 4px; } .lockup__safe { font-size: 30px; } .lockup__by { font-size: 11px; gap: 5px; } .lockup__logo { height: 12px; } }
+.nav { border-bottom-color: var(--iss-peach); }
+.nav__link { color: var(--iss-dark); }
+.nav__link:hover { color: #000; }
+.nav__link::before { background: var(--iss-orange); }
 .nav__bar { gap: 24px; }
 .nav__links { gap: 0; }
 /* partner logos sized by optical weight: the wide ISS wordmark smaller, the Exeter crest taller */
@@ -138,14 +143,28 @@ main > section.hero > .wrap.hero__wrap { display: grid; grid-template-columns: m
 /* trial offer on the dark band */
 #trial .ruled li { border-color: rgb(255 255 255 / .2); }
 #trial .ruled p, #trial .timeline p { color: #e6e6e6; }
-.timeline { list-style: none; margin: var(--s-6) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-6); }
-.timeline li { position: relative; padding-top: 22px; }
-.timeline li::before { content: ""; position: absolute; top: 0; left: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--iss-orange); }
-.timeline li::after { content: ""; position: absolute; top: 4px; left: 16px; right: -12px; border-top: 1px solid rgb(255 255 255 / .3); }
+.timeline { list-style: none; margin: clamp(48px, 6vw, 80px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-6); }
+.timeline li { position: relative; padding-top: 30px; }
+.timeline li::before { content: ""; position: absolute; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--iss-orange); background: var(--iss-dark); box-sizing: border-box; }
+.timeline li:first-child::before { background: var(--iss-orange); }
+.timeline li::after { content: ""; position: absolute; top: 5px; left: 22px; right: calc(-1 * var(--s-6) + 10px); border-top: 1px solid rgb(255 255 255 / .3); }
 .timeline li:last-child::after { display: none; }
-.timeline .t-label { color: #fff; }
-.timeline p { margin: 6px 0 0; font-size: 15px; }
-@media (max-width: 767px) { .timeline { grid-template-columns: 1fr 1fr; row-gap: 24px; } .timeline li::after { display: none; } }
+.timeline .t-label { display: block; font: var(--display-weight) clamp(24px, 3.2vw, 56px)/1.05 var(--font-display); letter-spacing: -0.035em; color: #fff; white-space: nowrap; }
+.timeline li:first-child .t-label { color: var(--iss-orange); }
+.timeline p { margin: 10px 0 0; font-size: 16px; line-height: 1.5; max-width: 26ch; }
+@media (max-width: 767px) {
+  .timeline { grid-template-columns: 1fr; gap: 28px; }
+  .timeline li { padding: 0 0 0 30px; }
+  .timeline li::before { top: 10px; }
+  .timeline li::after { top: 28px; left: 5px; right: auto; bottom: -22px; border-top: 0; border-left: 1px solid rgb(255 255 255 / .3); }
+  .timeline .t-label { font-size: 32px; }
+}
+/* the dark band: a faint site-plan grid that fades towards the timeline */
+#trial { position: relative; isolation: isolate; }
+#trial::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(rgb(255 255 255 / .06) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .06) 1px, transparent 1px);
+  background-size: 56px 56px; background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 85% 0%, #000 0%, transparent 100%); mask-image: radial-gradient(ellipse 70% 60% at 85% 0%, #000 0%, transparent 100%); }
 
 /* contact: the three steps beside the form */
 .contact__mail { margin: 0; font-size: 17px; }
@@ -237,5 +256,9 @@ html.motion-ready .timeline li::after { transform-origin: left; transform: scale
 /* the film that is not playing steps back slightly so the eye goes to the one that is */
 .case__clip video { transition: filter .4s var(--ease); }
 .case:not(.is-active) .case__clip video { filter: saturate(.55) brightness(.8); }
-.lockup__logo { height: 24px; width: auto; align-self: center; }
-@media (max-width: 639px) { .lockup__logo { height: 18px; } }
+/* why SAFE: the photograph over a small diagram of one operator, its vehicles and a handover */
+.why__side { display: grid; grid-template-rows: minmax(300px, 1fr) auto; gap: var(--s-4); }
+.why__side .split__photo { min-height: 300px; }
+.why__diagram { --bg: var(--iss-dark); --card: var(--iss-dark); --ink: #fff; --muted: var(--iss-grey); --accent: var(--iss-orange); --accent-ink: #000; --frag: #000;
+  --p-h: 280px; --font-mono: var(--font-text); position: relative; overflow: hidden; border-radius: var(--r-lg); background: var(--iss-dark); color: #fff; }
+@media (max-width: 1023px) { .why__side { grid-template-rows: auto auto; } .why__side .split__photo { min-height: 0; aspect-ratio: 3 / 2; } }
